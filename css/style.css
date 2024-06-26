@@ -413,6 +413,30 @@ background-color: transparent;
 }
 
 /** 
+ * Page édition d'un article, gestion des commentaires.
+ */
+ .admin_comments{
+    width:100%;
+ }
+ .admin_comments .comments{
+    display:flex;
+    width:100%;
+    flex-direction: column;
+    background-color: white;
+ }
+ .admin_comments .comments header h3{
+    padding: 5px 10px;
+    display:flex;
+    margin:0;
+    justify-content: space-between;
+ }
+ .admin_comments .comments header a{
+    display:block;
+    width:fit-content;
+ }
+
+
+/** 
  * Footer global de la page.
  */
 footer {
