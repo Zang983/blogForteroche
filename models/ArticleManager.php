@@ -37,7 +37,7 @@ class ArticleManager extends AbstractEntityManager
         $sortPossibilities = ['views', 'published', 'title', 'commentaries'];
         /*
         Faire la fonction de tri
-        */          
+        */
         if (in_array($sortBy, $sortPossibilities)) {
             switch ($sortBy) {
                 case 'views':
@@ -58,18 +58,26 @@ class ArticleManager extends AbstractEntityManager
      * @param int $id : l'id de l'article.
      * @return Article|null : un objet Article ou null si l'article n'existe pas.
      */
-    public function getArticleById(int $id): ?Article
+    public function getArticleById(int $id) : ?Article
     {
         $sql = "SELECT * FROM article WHERE id = :id";
         $result = $this->db->query($sql, ['id' => $id]);
         $article = $result->fetch();
         if ($article) {
-            //si y'a une session on incrémente pas
-            $sql = "UPDATE article SET views = :incrementedViews WHERE id = :id";
-            $this->db->query($sql, ['incrementedViews' => $article['views'] + 1, 'id' => $id]);
             return new Article($article);
         }
         return null;
+    }
+
+    /**
+     * Incrémente le nombre de vues d'un article.
+     * @param Article $article : l'article à modifier.
+     * @return void
+     */
+    public function incrementViews(Article $article): void
+    {
+        $sql = "UPDATE article SET views = :incrementedViews WHERE id = :id";
+        $this->db->query($sql, ['incrementedViews' => $article->getViews() + 1, 'id' => $article->getId()]);
     }
 
     /**

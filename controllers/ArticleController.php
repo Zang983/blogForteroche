@@ -34,6 +34,7 @@ class ArticleController
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
         $view = new View($article->getTitle());
+        $articleManager->incrementViews($article); // Incrémentation du nombre de vues (avant le rendu de la vue
         $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);
     }
 
