@@ -434,6 +434,9 @@ background-color: transparent;
     display:block;
     width:fit-content;
  }
+ .admin_comments p{
+    padding: 0 10px;
+ }
 
 
 /** 
