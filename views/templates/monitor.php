@@ -3,54 +3,54 @@
  * Affichage de la partie monitoring admin : Interface plus complète pour l'édition, suppression des articles et des commentaires.
  */
 $links = Utils::createLinksArray(); // Récupération des liens permettant de trier le tableau et du sens de la flêche.
+
 ?>
 
 <h2>Monitoring</h2>
 <table class="adminArticle monitoring">
     <thead>
         <tr>
-            <th>
-                <?= Utils::convertToHtml("./assets/eye.svg"); ?>
-                <a href='<?= $links[0]["link"] ?>' class="<?= $links[0]["active"]?>" aria-label="Tri par nombre de vues">
-                    <?= Utils::convertToHtml("./assets/" . $links[0]['arrow'] . ".svg"); ?>
+            <th class="col col-view">
+                <a href='<?= $links[0]["link"] ?>' class="<?= $links[0]["active"] . ' ' . $links[0]['arrow'] ?>"
+                    aria-label="Tri par nombre de vues">
+                    <?= Utils::convertToHtml("./assets/eye.svg"); ?>
+                </a>
+            </th>
+            <th class="col col-published">
+                <a href='<?= $links[1]["link"] ?>' class="<?= $links[1]['active'] . ' ' . $links[1]['arrow'] ?>"
+                    aria-label="Tri par date de publication">
+                    Publication
+                </a>
+            </th>
+            <th class="col col-title">
+                <a href='<?= $links[2]["link"] ?>' class="<?= $links[2]["active"] . ' ' . $links[2]['arrow'] ?>">
+                    Titre
+                </a>
+            </th>
+            <th class="col col-content">Extrait de l'article</th>
+            <th class="col col-commentaries">
+                <a href='<?= $links[3]["link"] ?>' class="<?= $links[3]["active"] . ' ' . $links[3]['arrow'] ?>"
+                    aria-label="Tri par nombre de commentaires">
+                    <?= Utils::convertToHtml("./assets/comments.svg"); ?>
+                </a>
+            </th>
+            <th class="col col-actions">
 
-                </a>
             </th>
-            <th>Publié le
-                <a href='<?= $links[1]["link"] ?>' class="<?= $links[1]['active']?>" aria-label="Tri par date de publication">
-                    <?= Utils::convertToHtml("./assets/" . $links[1]['arrow'] . ".svg"); ?>
-                </a>
-            </th>
-            <th>
-                Titre
-                <a href='<?= $links[2]["link"] ?>' class="<?= $links[2]["active"]?>" aria-label="Tri par titre">
-                    <?= Utils::convertToHtml("./assets/" . $links[2]['arrow'] . ".svg"); ?>
-                </a>
-            </th>
-            <th>Contenu</th>
-            <th>Commentaires
-                <a href='<?= $links[3]["link"] ?>' class="<?= $links[3]["active"]?>" aria-label="Tri par nombre de commentaires">
-                    <?= Utils::convertToHtml("./assets/" . $links[3]['arrow'] . ".svg"); ?>
-                </a>
-            </th>
-            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($articles as $article) {
-            echo "<br><br><br><br><br>";
-            var_dump($article);
-            echo "<br><br><br><br><br>";
             $articleDetails = $article["article"];
             ?>
             <tr>
                 <td>
-                <?= $articleDetails->getViews() ?>
+                    <?= $articleDetails->getViews() ?>
                 </td>
                 <td><?= Utils::convertDateToFrenchFormat($articleDetails->getDateCreation()) ?></td>
                 <td><?= $articleDetails->getTitle() ?></td>
                 <td><?= $articleDetails->getContent(200) ?></td>
-                <td class="commentaries"><?= count($article["commentaries"])?></td>
+                <td class="commentaries"><?= count($article["commentaries"]) ?></td>
                 <td>
                     <div class="actions">
                         <a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $articleDetails->getId() ?>">
@@ -67,5 +67,4 @@ $links = Utils::createLinksArray(); // Récupération des liens permettant de tr
     </tbody>
 </table>
 
-
-<!-- <a class="submit" href="index.php?action=showUpdateArticleForm">Ajouter un article</a> -->
+<a class="submit" href="index.php?action=showUpdateArticleForm">Ajouter un article</a>

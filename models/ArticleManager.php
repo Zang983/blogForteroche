@@ -37,7 +37,7 @@ class ArticleManager extends AbstractEntityManager
         $sortPossibilities = ['views', 'published', 'title', 'commentaries'];
         /*
         Faire la fonction de tri
-        */
+        */          
         if (in_array($sortBy, $sortPossibilities)) {
             switch ($sortBy) {
                 case 'views':
@@ -50,8 +50,6 @@ class ArticleManager extends AbstractEntityManager
                     return Utils::sortByPublished($articles, $asc);
             }
         }
-
-
         return $articles;
     }
 
@@ -66,6 +64,7 @@ class ArticleManager extends AbstractEntityManager
         $result = $this->db->query($sql, ['id' => $id]);
         $article = $result->fetch();
         if ($article) {
+            //si y'a une session on incrémente pas
             $sql = "UPDATE article SET views = :incrementedViews WHERE id = :id";
             $this->db->query($sql, ['incrementedViews' => $article['views'] + 1, 'id' => $id]);
             return new Article($article);

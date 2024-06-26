@@ -41,7 +41,7 @@ class AdminController
         // On affiche la page d'administration.
         $view = new View("Administration");
         $view->render("monitor", [
-            'articles' => $articles
+            'articles' => $articles,
         ]);
     }
 
@@ -195,5 +195,18 @@ class AdminController
 
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
+    }
+    public function deleteComment(): void
+    {
+        $this->checkIfUserIsConnected();
+
+        $id = Utils::request("id", -1);
+
+        // On supprime le commentaire.
+        $commentManager = new CommentManager();
+        $commentManager->deleteComment($id);
+
+        // On redirige vers la page d'administration.
+        Utils::redirect('../index.php?action=showMonitor&sortBy=title&asc');
     }
 }

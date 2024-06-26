@@ -20,7 +20,7 @@
     --dateColor: #3f56a4;
     --quoteColor: #c5cbe4;
     --commentPaleColor: #99a140;
-    --commentPaleColorOdd: #b5bf4b;
+    --commentPaleColorOdd: #c5cf52;
     --commentColor: #255E33;
 }
 
@@ -349,9 +349,50 @@ a.info {
     text-align: center;
     vertical-align: center;
 }
+.monitoring{
+    color:black;
+}
+.monitoring thead{
+    
+    font-weight:bold;
+}
+.col{
+    padding: 0 25px;
+}
+.monitoring thead th{
+    position:relative;
+}
+
+.monitoring .arrowUp::after,.monitoring .arrowDown::after{
+    content:'';
+    border:2px solid black;
+    background-color: black;
+    border-radius: 100%;
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    right:4px;
+    width:4px;
+    height:4px;
+}
+.monitoring *.active::after{
+    background-color: transparent;
+    border-radius:0;
+    width:8px;
+    height:8px;
+}
+.arrowUp.active::after{
+    transform:rotate(45deg) translate(-50%);
+    border-right:none;
+    border-bottom:none;
+}
+.arrowDown.active::after{
+    border-right:none;
+    border-bottom:none;
+    transform: rotate(-135deg)  translate(50%);
+}
 .monitoring .actions{
 display:flex;
-gap:10px;
 }
 .monitoring .actions a{
 background-color: transparent;
@@ -359,32 +400,17 @@ background-color: transparent;
 .monitoring tbody tr:nth-child(odd){
     background-color: var(--commentPaleColorOdd);
 }
-.monitoring th,.monitoring td{
-    padding:1em 2em;
+
+.monitoring td{
+    padding:10px 0;
 }
 .monitoring tr,.monitoring td,.monitoring th,.monitoring{
     border:1px solid black;
-}
-.monitoring .commentaries{
-    column-span: all;
 }
 .svg-icon{
     width:25px;
     height:25px;
 }
-.monitoring a:hover .svg-icon:not(.svg-icon__trash,.active *) *{
-    fill:white;
-}
-.monitoring a:hover .svg-icon:not(.svg-icon__eye,.active *) *{
-    stroke:white;
-}
-.active .svg-icon__arrow{
-    fill: red !important;;
-    stroke:red !important;
-}
-
-
-
 
 /** 
  * Footer global de la page.

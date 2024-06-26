@@ -122,6 +122,7 @@ class Utils
             }
             array_push($links, ["link" => $link . 'sortBy=' . $possibility . '&' . $ascOrDesc . '', 'arrow' => $arrowType, "active" => $isActive ? "active" : ""]);
         }
+        
         return $links;
     }
     public static function sortByTitle(array $articles, bool $asc = true): array
@@ -132,6 +133,7 @@ class Utils
             else
                 return $b['article']->getTitle() <=> $a['article']->getTitle();
         });
+
         return $articles;
     }
     public static function sortByViews(array $articles, bool $asc = true): array
@@ -142,6 +144,7 @@ class Utils
             else
                 return $b['article']->getViews() <=> $a['article']->getViews();
         });
+
         return $articles;
     }
     public static function sortByPublished(array $articles, bool $asc = true): array
@@ -152,6 +155,7 @@ class Utils
             else
                 return $b['article']->getDateCreation() <=> $a['article']->getDateCreation();
         });
+
         return $articles;
     }
     public static function sortByCommentaries(array $articles, bool $asc = true): array
@@ -162,6 +166,7 @@ class Utils
             else
                 return count($b['commentaries']) <=> count($a['commentaries']);
         });
+
         return $articles;
     }
 }

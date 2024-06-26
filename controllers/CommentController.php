@@ -44,4 +44,16 @@ class CommentController
         // On redirige vers la page de l'article.
         Utils::redirect("showArticle", ['id' => $idArticle]);
     }
+    public function deleteComment(int $id) :void{
+
+        $commentManager = new CommentManager();
+        $result = $commentManager->deleteComment($id);
+        if(!$result){
+            throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
+        }
+        Utils::redirect("index.php?action=showMonitor&sortBy=title&asc");
+
+        
+        
+    }
 }
