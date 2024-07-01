@@ -130,20 +130,16 @@ class AdminController
         // On récupère l'article associé.
         $articleManager = new ArticleManager();
         $article = $articleManager->getArticleById($id);
-        $commentManager = new CommentManager();
-        $comments = $commentManager->getAllCommentsByArticleId($id);
 
         // Si l'article n'existe pas, on en crée un vide. 
         if (!$article) {
             $article = new Article();
-            $comments = [];
         }
 
         // On affiche la page de modification de l'article.
         $view = new View("Edition d'un article");
         $view->render("updateArticleForm", [
             'article' => $article,
-            'comments' => $comments,
         ]);
     }
 

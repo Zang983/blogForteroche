@@ -30,12 +30,9 @@ class ArticleController
             throw new Exception("L'article demandé n'existe pas.");
         }
 
-        $commentManager = new CommentManager();
-        $comments = $commentManager->getAllCommentsByArticleId($id);
-
         $view = new View($article->getTitle());
-        $articleManager->incrementViews($article); // Incrémentation du nombre de vues (avant le rendu de la vue
-        $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);
+        $articleManager->incrementViews($article); // Incrémentation du nombre de vues
+        $view->render("detailArticle", ['article' => $article]);
     }
 
     /**

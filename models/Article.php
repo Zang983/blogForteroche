@@ -15,6 +15,19 @@ class Article extends AbstractEntity
 
     private array $comments = [];
 
+    public function __construct(array $data = [])
+    {
+        $sectionWithComments = ["showUpdateArticleForm", "showArticle"];
+        if (isset($_GET['action']) && isset($_GET['id'])) {
+            if (in_array($_GET['action'], $sectionWithComments)) {
+                $commentManager = new CommentManager();
+                $this->comments = $commentManager->getAllCommentsByArticleId($_GET['id']);
+                // var_dump($this->comments);
+            }
+        }
+        parent::__construct($data);
+    }
+
     /**
      * Setter pour l'id de l'utilisateur. 
      * @param int $idUser
@@ -146,6 +159,10 @@ class Article extends AbstractEntity
     public function getDateUpdate(): ?DateTime
     {
         return $this->dateUpdate;
+    }
+    public function getComments(): array
+    {
+        return $this->comments;
     }
 
 }

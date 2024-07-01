@@ -5,10 +5,8 @@
 
 //Vérification si un id de commentaire est passé en paramètre. Si c'est le cas suppression de ce dernier :
 if (isset($_GET["commentId"])) {
-
-    $commentId = $_GET["commentId"];
     $commentController = new CommentController();
-    $commentController->deleteComment($commentId, $article->getId());
+    $commentController->deleteComment($_GET["commentId"], $article->getId());
 }
 ?>
 
@@ -29,7 +27,7 @@ if (isset($_GET["commentId"])) {
 <section class="admin_comments">
 
     <?php
-    foreach ($comments as $comment) { ?>
+    foreach ($article->getComments() as $comment) { ?>
         <article class="comments">
             <header>
                 <h3>
