@@ -129,9 +129,9 @@ class Utils
     {
         usort($articles, function ($a, $b) use ($asc) {
             if ($asc)
-                return $a['article']->getTitle() <=> $b['article']->getTitle();
+                return $a->getTitle() <=> $b->getTitle();
             else
-                return $b['article']->getTitle() <=> $a['article']->getTitle();
+                return $b->getTitle() <=> $a->getTitle();
         });
 
         return $articles;
@@ -140,9 +140,9 @@ class Utils
     {
         usort($articles, function ($a, $b) use ($asc) {
             if ($asc)
-                return $a['article']->getViews() <=> $b['article']->getViews();
+                return $a->getViews() <=> $b->getViews();
             else
-                return $b['article']->getViews() <=> $a['article']->getViews();
+                return $b->getViews() <=> $a->getViews();
         });
 
         return $articles;
@@ -151,9 +151,9 @@ class Utils
     {
         usort($articles, function ($a, $b) use ($asc) {
             if ($asc)
-                return $a['article']->getDateCreation() <=> $b['article']->getDateCreation();
+                return $a->getDateCreation() <=> $b->getDateCreation();
             else
-                return $b['article']->getDateCreation() <=> $a['article']->getDateCreation();
+                return $b->getDateCreation() <=> $a->getDateCreation();
         });
 
         return $articles;
@@ -162,9 +162,9 @@ class Utils
     {
         usort($articles, function ($a, $b) use ($asc) {
             if ($asc)
-                return count($a['commentaries']) <=> count($b['commentaries']);
+                return count($a->getComments()) <=> count($b->getComments());
             else
-                return count($b['commentaries']) <=> count($a['commentaries']);
+                return count($b->getComments()) <=> count($a->getComments());
         });
 
         return $articles;

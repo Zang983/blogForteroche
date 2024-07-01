@@ -17,15 +17,15 @@ class Article extends AbstractEntity
 
     public function __construct(array $data = [])
     {
-        $sectionWithComments = ["showUpdateArticleForm", "showArticle"];
-        if (isset($_GET['action']) && isset($_GET['id'])) {
+        parent::__construct($data);
+
+        $sectionWithComments = ["showUpdateArticleForm", "showArticle", "monitor"];
+        if (isset($_GET['action'])) {
             if (in_array($_GET['action'], $sectionWithComments)) {
                 $commentManager = new CommentManager();
-                $this->comments = $commentManager->getAllCommentsByArticleId($_GET['id']);
-                // var_dump($this->comments);
+                $this->comments = $commentManager->getAllCommentsByArticleId($this->getId());
             }
         }
-        parent::__construct($data);
     }
 
     /**

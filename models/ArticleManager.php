@@ -9,22 +9,16 @@ class ArticleManager extends AbstractEntityManager
      * Récupère tous les articles.
      * @return array : un tableau d'objets Article.
      */
-    public function getAllArticles(bool $withCommentaries = false): array
+    public function getAllArticles(): array
     {
         $sql = "SELECT * FROM article";
         $result = $this->db->query($sql);
         $articles = [];
 
         while ($article = $result->fetch()) {
-            if (!$withCommentaries)
+         
                 $articles[] = new Article($article);
-            else {
-                $commentariesManager = new CommentManager();
-                $articles[] = [
-                    "article" => new Article($article),
-                    "commentaries" => $commentariesManager->getAllCommentsByArticleId($article['id'])
-                ];
-            }
+
         }
 
         if (isset($_GET['sortBy']))

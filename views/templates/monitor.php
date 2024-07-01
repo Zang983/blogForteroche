@@ -41,22 +41,21 @@ $links = Utils::createLinksArray(); // Récupération des liens permettant de tr
     </thead>
     <tbody>
         <?php foreach ($articles as $article) {
-            $articleDetails = $article["article"];
             ?>
             <tr>
                 <td>
-                    <?= $articleDetails->getViews() ?>
+                    <?= $article->getViews() ?>
                 </td>
-                <td><?= Utils::convertDateToFrenchFormat($articleDetails->getDateCreation()) ?></td>
-                <td><?= $articleDetails->getTitle() ?></td>
-                <td><?= $articleDetails->getContent(200) ?></td>
-                <td class="commentaries"><?= count($article["commentaries"]) ?></td>
+                <td><?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?></td>
+                <td><?= $article->getTitle() ?></td>
+                <td><?= $article->getContent(200) ?></td>
+                <td class="commentaries"><?= count($article->getComments()) ?></td>
                 <td>
                     <div class="actions">
-                        <a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $articleDetails->getId() ?>">
+                        <a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">
                             <?= Utils::convertToHtml("./assets/edit.svg"); ?>
                         </a>
-                        <a class="submit" href="index.php?action=deleteArticle&id=<?= $articleDetails->getId() ?>"
+                        <a class="submit" href="index.php?action=deleteArticle&id=<?= $article->getId() ?>"
                             <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?>>
                             <?= Utils::convertToHtml("./assets/trash.svg"); ?>
                         </a>
