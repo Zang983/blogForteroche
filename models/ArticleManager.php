@@ -45,6 +45,7 @@ class ArticleManager extends AbstractEntityManager
                     return Sort::sortArticles($articles, 'dateCreation', $asc);
             }
         }
+
         return $articles;
     }
 
@@ -61,6 +62,7 @@ class ArticleManager extends AbstractEntityManager
         if ($article) {
             return new Article($article);
         }
+        
         return null;
     }
 

@@ -5,7 +5,6 @@
 
 class AdminController
 {
-
     /**
      * Affiche la page d'administration.
      * @return void
@@ -44,7 +43,6 @@ class AdminController
             'articles' => $articles,
         ]);
     }
-
     /**
      * Vérifie que l'utilisateur est connecté.
      * @return void
