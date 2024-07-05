@@ -125,48 +125,4 @@ class Utils
         
         return $links;
     }
-    public static function sortByTitle(array $articles, bool $asc = true): array
-    {
-        usort($articles, function ($a, $b) use ($asc) {
-            if ($asc)
-                return $a->getTitle() <=> $b->getTitle();
-            else
-                return $b->getTitle() <=> $a->getTitle();
-        });
-
-        return $articles;
-    }
-    public static function sortByViews(array $articles, bool $asc = true): array
-    {
-        usort($articles, function ($a, $b) use ($asc) {
-            if ($asc)
-                return $a->getViews() <=> $b->getViews();
-            else
-                return $b->getViews() <=> $a->getViews();
-        });
-
-        return $articles;
-    }
-    public static function sortByPublished(array $articles, bool $asc = true): array
-    {
-        usort($articles, function ($a, $b) use ($asc) {
-            if ($asc)
-                return $a->getDateCreation() <=> $b->getDateCreation();
-            else
-                return $b->getDateCreation() <=> $a->getDateCreation();
-        });
-
-        return $articles;
-    }
-    public static function sortByCommentaries(array $articles, bool $asc = true): array
-    {
-        usort($articles, function ($a, $b) use ($asc) {
-            if ($asc)
-                return count($a->getComments()) <=> count($b->getComments());
-            else
-                return count($b->getComments()) <=> count($a->getComments());
-        });
-
-        return $articles;
-    }
 }

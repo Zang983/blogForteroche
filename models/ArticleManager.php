@@ -9,6 +9,7 @@ class ArticleManager extends AbstractEntityManager
      * Récupère tous les articles.
      * @return array : un tableau d'objets Article.
      */
+
     public function getAllArticles(): array
     {
         $sql = "SELECT * FROM article";
@@ -35,13 +36,13 @@ class ArticleManager extends AbstractEntityManager
         if (in_array($sortBy, $sortPossibilities)) {
             switch ($sortBy) {
                 case 'views':
-                    return Utils::sortByViews($articles, $asc);
+                    return Sort::sortArticles($articles, 'views', $asc);
                 case 'title':
-                    return Utils::sortByTitle($articles, $asc);
+                    return Sort::sortArticles($articles, 'title', $asc);
                 case 'commentaries':
-                    return Utils::sortByCommentaries($articles, $asc);
+                    return Sort::sortArticles($articles, 'numberOfComments', $asc);
                 case 'published':
-                    return Utils::sortByPublished($articles, $asc);
+                    return Sort::sortArticles($articles, 'dateCreation', $asc);
             }
         }
         return $articles;

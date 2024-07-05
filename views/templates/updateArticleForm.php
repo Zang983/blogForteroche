@@ -34,7 +34,9 @@ if (isset($_GET["commentId"])) {
                     <?= $comment->getPseudo() ?> a écrit le :
                     <?= Utils::convertDateToFrenchFormat($comment->getDateCreation()) ?>
                     <a href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>&commentId=<?= $comment->getId() ?>"
-                        <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") ?>> Supprimer</a>
+                        <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") ?>>
+                        <?= Utils::convertToHtml("./assets/trash.svg"); ?>
+                    </a>
                 </h3>
 
             </header>

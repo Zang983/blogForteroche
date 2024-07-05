@@ -164,5 +164,9 @@ class Article extends AbstractEntity
     {
         return $this->comments;
     }
+    public function getNumberOfComments(): int
+    {
+        return count($this->comments);
+    }
 
 }

@@ -37,7 +37,7 @@ class AdminController
 
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles(true);
+        $articles = $articleManager->getAllArticles();
         // On affiche la page d'administration.
         $view = new View("Administration");
         $view->render("monitor", [
